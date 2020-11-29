@@ -25,12 +25,17 @@ dependencies {
     testImplementation('org.junit.jupiter:junit-jupiter:5.6.3')
 }
 
+def targetIdeaVersion = '2020.2.4'
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2020.2.4'
+    version targetIdeaVersion
 }
 patchPluginXml {
     changeNotes """
       Add change notes here.<br>
       <em>most HTML tags may be used</em>"""
+}
+
+runPluginVerifier {
+    ideVersions(targetIdeaVersion)
 }
