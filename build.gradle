@@ -1,10 +1,18 @@
 plugins {
     id 'java'
+    id 'idea'
     id 'org.jetbrains.intellij' version '0.6.5'
 }
 
 group 'name.cgt'
 version '1.0-SNAPSHOT'
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
 
 repositories {
     mavenCentral()
