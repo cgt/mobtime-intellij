@@ -14,7 +14,7 @@ sourceCompatibility = 11
 targetCompatibility = 11
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation('org.junit.jupiter:junit-jupiter:5.6.3')
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
