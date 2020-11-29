@@ -1,0 +1,19 @@
+<idea-plugin>
+    <id>name.cgt.mobtime-intellij</id>
+    <name>Mobtime for IntelliJ</name>
+    <vendor email="chris@cgt.name" url="https://cgt.name">Christoffer G. Thomsen</vendor>
+
+    <description>A plugin to integrate mobti.me with IntelliJ.</description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
