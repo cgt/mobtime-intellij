@@ -11,6 +11,9 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <statusBarWidgetFactory
+                id="mystatusbarwidgetid"
+                implementation="name.cgt.mobtimeintellij.MyStatusBarWidgetFactory" />
     </extensions>
 
     <actions>
