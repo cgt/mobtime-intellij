@@ -69,7 +69,7 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
         return null;
     }
 
-    private class Applesauce implements TimerService.Listener {
+    private static class Applesauce implements TimerService.Listener {
 
         private final StatusBarTimer statusBarTimer;
         private final StatusBar statusBar;
