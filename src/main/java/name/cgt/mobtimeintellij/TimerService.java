@@ -13,7 +13,6 @@ class TimerService {
 
     void startTimer() {
         this.timer = new Timer(true);
-        final var timer = this.timer;
         final var showTimerExpired = new TimerTask() {
             @Override
             public void run() {
@@ -23,6 +22,6 @@ class TimerService {
                 );
             }
         };
-        timer.schedule(showTimerExpired, Duration.ofSeconds(5).toMillis());
+        this.timer.schedule(showTimerExpired, Duration.ofSeconds(5).toMillis());
     }
 }
