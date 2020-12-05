@@ -7,7 +7,7 @@ import java.time.Duration;
 import java.util.Timer;
 import java.util.TimerTask;
 
-class TimerService {
+final class TimerService {
 
     private final Timer timer = new Timer(true);
 
