@@ -14,7 +14,7 @@ public class StartTimer extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
         final var timer = new Timer(true);
-        final var task = new TimerTask() {
+        final var showTimerExpired = new TimerTask() {
             @Override
             public void run() {
                 final var app = ApplicationManager.getApplication();
@@ -23,7 +23,7 @@ public class StartTimer extends AnAction {
                 );
             }
         };
-        timer.schedule(task, Duration.ofSeconds(5).toMillis());
+        timer.schedule(showTimerExpired, Duration.ofSeconds(5).toMillis());
     }
 
     @Override
