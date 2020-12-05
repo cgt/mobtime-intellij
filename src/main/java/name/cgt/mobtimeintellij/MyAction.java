@@ -9,7 +9,10 @@ public class MyAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         System.out.println("Execute MyAction again!!");
-        Messages.showInfoMessage("Message from MyAction", "An Excellent Dialog");
+        Messages.showInfoMessage(
+          "Message from MyAction: " + e.getPresentation().getDescription(),
+          "An Excellent Dialog"
+        );
     }
 
     @Override
