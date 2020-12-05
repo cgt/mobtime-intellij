@@ -86,6 +86,7 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
 
         @Override
         public void onExpired() {
+            setLabelText("Timer ready");
         }
 
         private void setLabelText(String text) {
