@@ -12,6 +12,7 @@ import java.util.TimerTask;
 final class TimerService {
 
     private final Timer timer = new Timer(true);
+    private Listener listener;
 
     void startTimer() {
         final var showTimerExpired = new TimerTask() {
@@ -24,5 +25,14 @@ final class TimerService {
             }
         };
         timer.schedule(showTimerExpired, Duration.ofSeconds(5).toMillis());
+        listener.onStarted();
+    }
+
+    void addListener(Listener listener) {
+        this.listener = listener;
+    }
+
+    interface Listener {
+        void onStarted();
     }
 }
