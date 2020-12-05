@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 public class StartTimer extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
-        TimerService.invoke();
+        TimerService.startTimer();
     }
 
     @Override

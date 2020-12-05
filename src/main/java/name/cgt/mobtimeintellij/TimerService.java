@@ -8,7 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 class TimerService {
-    static void invoke() {
+    static void startTimer() {
         final var timer = new Timer(true);
         final var showTimerExpired = new TimerTask() {
             @Override
