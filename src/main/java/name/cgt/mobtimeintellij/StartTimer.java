@@ -22,7 +22,7 @@ public class StartTimer extends AnAction {
     }
 
     private static class Applesauce {
-        private static void invoke() {
+        static void invoke() {
             final var timer = new Timer(true);
             final var showTimerExpired = new TimerTask() {
                 @Override
