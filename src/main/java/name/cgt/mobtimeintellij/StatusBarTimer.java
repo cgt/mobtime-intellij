@@ -41,8 +41,8 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
                 setLabelText("Timer started");
             }
 
-            private void setLabelText(String x) {
-                StatusBarTimer.this.text = x;
+            private void setLabelText(String text) {
+                StatusBarTimer.this.text = text;
                 statusBar.updateWidget(StatusBarTimer.this.ID());
             }
         });
