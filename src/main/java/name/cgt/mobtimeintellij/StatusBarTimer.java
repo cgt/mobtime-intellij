@@ -16,6 +16,7 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
     @NotNull
     public static final String id = "StatusBarTimer";
 
+    @NotNull
     private String text = "Timer ready";
 
     protected StatusBarTimer(@NotNull Project project) {
