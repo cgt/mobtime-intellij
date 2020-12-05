@@ -35,7 +35,7 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
     public void install(@NotNull StatusBar statusBar) {
         super.install(statusBar);
         statusBar.updateWidget(ID());
-        ServiceManager.getService(TimerService.class).addListener(new LabelUpdater(StatusBarTimer.this));
+        ServiceManager.getService(TimerService.class).addListener(new LabelUpdater(this));
     }
 
     @Override
