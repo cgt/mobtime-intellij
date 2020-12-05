@@ -15,6 +15,6 @@
 
     <actions>
         <action id="name.cgt.mobtimeintellij.StartTimer" class="name.cgt.mobtimeintellij.StartTimer"
-                text="Start Timer"/>
+                text="Start Timer"></action>
     </actions>
 </idea-plugin>
