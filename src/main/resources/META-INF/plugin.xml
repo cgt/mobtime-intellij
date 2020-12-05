@@ -11,4 +11,8 @@
 
     <extensions defaultExtensionNs="com.intellij">
     </extensions>
+    <actions>
+        <action id="name.cgt.mobtimeintellij.StartTimer" class="name.cgt.mobtimeintellij.StartTimer"
+                text="Start Timer"/>
+    </actions>
 </idea-plugin>
