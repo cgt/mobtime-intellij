@@ -36,14 +36,17 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
         super.install(statusBar);
         statusBar.updateWidget(ID());
         ServiceManager.getService(TimerService.class).addListener(new TimerService.Listener() {
+
+            private final StatusBarTimer statusBarTimer = StatusBarTimer.this;
+
             @Override
             public void onStarted() {
                 setLabelText("Timer started");
             }
 
             private void setLabelText(String text) {
-                StatusBarTimer.this.text = text;
-                statusBar.updateWidget(StatusBarTimer.this.ID());
+                statusBarTimer.text = text;
+                statusBar.updateWidget(statusBarTimer.ID());
             }
         });
     }
