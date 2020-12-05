@@ -20,6 +20,7 @@ final class TimerService {
             public void run() {
                 final var app = ApplicationManager.getApplication();
                 app.invokeLater(() -> {
+                    listener.onExpired();
                     Messages.showInfoMessage("The timer has expired.", "Rotate!");
                   }
                 );
@@ -35,5 +36,7 @@ final class TimerService {
 
     interface Listener {
         void onStarted();
+
+        void onExpired();
     }
 }
