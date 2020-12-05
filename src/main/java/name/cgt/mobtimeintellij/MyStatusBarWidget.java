@@ -1,5 +1,6 @@
 package name.cgt.mobtimeintellij;
 
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.StatusBar;
 import com.intellij.openapi.wm.StatusBarWidget;
@@ -11,16 +12,27 @@ import org.jetbrains.annotations.Nullable;
 import java.awt.event.MouseEvent;
 
 public class MyStatusBarWidget extends EditorBasedWidget implements StatusBarWidget.TextPresentation {
+    private final Mobtime mobtime;
     private String myText = "MY STATUS BAR LABEL";
 
     public MyStatusBarWidget(@NotNull Project project) {
         super(project);
+        mobtime = new Mobtime();
     }
 
     @Override
     public void install(@NotNull StatusBar statusBar) {
         super.install(statusBar);
         myStatusBar.updateWidget(ID());
+        final var app = ApplicationManager.getApplication();
+        app.executeOnPooledThread(() ->
+          mobtime.connect("idea", message ->
+            app.invokeLater(() -> {
+                myText = message;
+                myStatusBar.updateWidget(ID());
+            })
+          )
+        );
     }
 
     @Override
