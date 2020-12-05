@@ -75,7 +75,7 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
         private final StatusBar statusBar;
 
         public Applesauce(StatusBar statusBar, StatusBarTimer statusBarTimer) {
-            this.statusBar = statusBar;
+            this.statusBar = statusBarTimer.myStatusBar;
             this.statusBarTimer = statusBarTimer;
         }
 
