@@ -35,20 +35,7 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
     public void install(@NotNull StatusBar statusBar) {
         super.install(statusBar);
         statusBar.updateWidget(ID());
-        ServiceManager.getService(TimerService.class).addListener(new TimerService.Listener() {
-
-            private final StatusBarTimer statusBarTimer = StatusBarTimer.this;
-
-            @Override
-            public void onStarted() {
-                setLabelText("Timer started");
-            }
-
-            private void setLabelText(String text) {
-                statusBarTimer.text = text;
-                statusBar.updateWidget(statusBarTimer.ID());
-            }
-        });
+        ServiceManager.getService(TimerService.class).addListener(new Applesauce(statusBar));
     }
 
     @Override
@@ -80,5 +67,26 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
     @Nullable
     public Consumer<MouseEvent> getClickConsumer() {
         return null;
+    }
+
+    private class Applesauce implements TimerService.Listener {
+
+        private final StatusBarTimer statusBarTimer;
+        private final StatusBar statusBar;
+
+        public Applesauce(StatusBar statusBar) {
+            this.statusBar = statusBar;
+            statusBarTimer = StatusBarTimer.this;
+        }
+
+        @Override
+        public void onStarted() {
+            setLabelText("Timer started");
+        }
+
+        private void setLabelText(String text) {
+            statusBarTimer.text = text;
+            statusBar.updateWidget(statusBarTimer.ID());
+        }
     }
 }
