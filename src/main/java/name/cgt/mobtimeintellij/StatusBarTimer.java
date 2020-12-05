@@ -35,7 +35,7 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
     public void install(@NotNull StatusBar statusBar) {
         super.install(statusBar);
         statusBar.updateWidget(ID());
-        ServiceManager.getService(TimerService.class).addListener(new Applesauce(statusBar));
+        ServiceManager.getService(TimerService.class).addListener(new Applesauce(statusBar, StatusBarTimer.this));
     }
 
     @Override
@@ -74,9 +74,9 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
         private final StatusBarTimer statusBarTimer;
         private final StatusBar statusBar;
 
-        public Applesauce(StatusBar statusBar) {
+        public Applesauce(StatusBar statusBar, StatusBarTimer statusBarTimer) {
             this.statusBar = statusBar;
-            statusBarTimer = StatusBarTimer.this;
+            this.statusBarTimer = statusBarTimer;
         }
 
         @Override
