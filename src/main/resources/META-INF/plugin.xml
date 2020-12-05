@@ -15,6 +15,8 @@
 
     <actions>
         <action id="name.cgt.mobtimeintellij.StartTimer" class="name.cgt.mobtimeintellij.StartTimer"
-                text="Start Timer"></action>
+                text="Start Timer">
+            <add-to-group group-id="ToolsBasicGroup" anchor="first"/>
+        </action>
     </actions>
 </idea-plugin>
