@@ -23,6 +23,6 @@ final class TimerService {
                 );
             }
         };
-        this.timer.schedule(showTimerExpired, Duration.ofSeconds(5).toMillis());
+        timer.schedule(showTimerExpired, Duration.ofSeconds(5).toMillis());
     }
 }
