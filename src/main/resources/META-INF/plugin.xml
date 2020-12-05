@@ -10,20 +10,5 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
-<!--        <statusBarWidgetFactory
-                id="mystatusbarwidgetid"
-                implementation="name.cgt.mobtimeintellij.MyStatusBarWidgetFactory" />-->
-        <notificationGroup displayType="BALLOON" id="myng"/>
     </extensions>
-
-    <actions>
-        <!-- Add your actions here -->
-        <action id="name.cgt.mobtimeintellij.MyAction"
-                class="name.cgt.mobtimeintellij.MyAction"
-                text="Do Something"
-                description="Could be anything!">
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
-        </action>
-    </actions>
 </idea-plugin>
