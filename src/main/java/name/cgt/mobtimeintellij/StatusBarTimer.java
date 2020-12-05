@@ -1,5 +1,6 @@
 package name.cgt.mobtimeintellij;
 
+import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.NlsContexts;
 import com.intellij.openapi.wm.StatusBar;
@@ -34,6 +35,10 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
     public void install(@NotNull StatusBar statusBar) {
         super.install(statusBar);
         statusBar.updateWidget(ID());
+        ServiceManager.getService(TimerService.class).addListener(() -> {
+            text = "Timer started";
+            statusBar.updateWidget(ID());
+        });
     }
 
     @Override
