@@ -22,7 +22,10 @@ sourceCompatibility = 11
 targetCompatibility = 11
 
 dependencies {
+    implementation('org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17')
+    implementation('org.springframework:spring-websocket:5.3.1')
     testImplementation('org.junit.jupiter:junit-jupiter:5.6.3')
+    testImplementation('org.awaitility:awaitility:4.0.3')
 }
 
 def targetIdeaVersion = '2020.2.4'
@@ -38,4 +41,11 @@ patchPluginXml {
 
 runPluginVerifier {
     ideVersions(targetIdeaVersion)
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
