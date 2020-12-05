@@ -19,8 +19,9 @@ final class TimerService {
             @Override
             public void run() {
                 final var app = ApplicationManager.getApplication();
-                app.invokeLater(() ->
-                  Messages.showInfoMessage("The timer has expired.", "Rotate!")
+                app.invokeLater(() -> {
+                    Messages.showInfoMessage("The timer has expired.", "Rotate!");
+                  }
                 );
             }
         };
