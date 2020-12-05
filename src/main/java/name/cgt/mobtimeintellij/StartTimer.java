@@ -8,7 +8,8 @@ import org.jetbrains.annotations.NotNull;
 public class StartTimer extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
-        ServiceManager.getService(TimerService.class).startTimer();
+        final var timer = ServiceManager.getService(TimerService.class);
+        timer.startTimer();
     }
 
     @Override
