@@ -66,7 +66,9 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
     @Override
     @Nullable
     public Consumer<MouseEvent> getClickConsumer() {
-        return null;
+        return mouseEvent -> {
+            ServiceManager.getService(TimerService.class).startTimer();
+        };
     }
 
     private static class LabelUpdater implements TimerService.Listener {
