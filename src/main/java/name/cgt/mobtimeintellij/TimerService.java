@@ -9,10 +9,9 @@ import java.util.TimerTask;
 
 class TimerService {
 
-    private Timer timer;
+    private Timer timer = new Timer(true);
 
     void startTimer() {
-        this.timer = new Timer(true);
         final var showTimerExpired = new TimerTask() {
             @Override
             public void run() {
