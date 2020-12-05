@@ -7,7 +7,7 @@ import java.time.Duration;
 import java.util.Timer;
 import java.util.TimerTask;
 
-class Applesauce {
+class TimerService {
     static void invoke() {
         final var timer = new Timer(true);
         final var showTimerExpired = new TimerTask() {
