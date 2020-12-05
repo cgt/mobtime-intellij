@@ -14,6 +14,7 @@
 <!--        <statusBarWidgetFactory
                 id="mystatusbarwidgetid"
                 implementation="name.cgt.mobtimeintellij.MyStatusBarWidgetFactory" />-->
+        <notificationGroup displayType="BALLOON" id="myng"/>
     </extensions>
 
     <actions>

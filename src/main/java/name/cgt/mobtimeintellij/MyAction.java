@@ -1,26 +1,23 @@
 package name.cgt.mobtimeintellij;
 
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
+import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.ui.Messages;
 import org.jetbrains.annotations.NotNull;
 
 public class MyAction extends AnAction {
-    private boolean wasExecuted = false;
-
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        System.out.println("Execute MyAction again!!");
-        Messages.showInfoMessage(
-          "This action will be disabled after first use.",
-          "An Excellent Dialog"
+        Notifications.Bus.notify(
+          new Notification(
+            "myng",
+            "My title",
+            "My content",
+            NotificationType.INFORMATION
+          )
         );
-        wasExecuted = true;
-    }
-
-    @Override
-    public void update(@NotNull AnActionEvent e) {
-        e.getPresentation().setEnabled(!wasExecuted);
     }
 
     @Override
