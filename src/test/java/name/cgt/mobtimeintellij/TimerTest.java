@@ -93,8 +93,8 @@ public class TimerTest {
             display.timeRemaining(remaining);
         }
 
-        private boolean isLessThanOneSecond(Duration elapsed) {
-            return elapsed.compareTo(Duration.ofSeconds(1)) < 0;
+        private boolean isLessThanOneSecond(Duration d) {
+            return d.compareTo(Duration.ofSeconds(1)) < 0;
         }
     }
 
