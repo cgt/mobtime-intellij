@@ -32,7 +32,7 @@ class Mobtime {
 
     public void connect(String timerName, Consumer<String> messageListener) {
         this.messageListener = messageListener;
-        ws.doHandshake(handler, "ws://localhost:1234/" + timerName);
+        ws.doHandshake(handler, "wss://mobti.me/" + timerName);
     }
 
     public void onConnect() {
