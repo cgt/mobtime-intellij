@@ -109,6 +109,22 @@ public class TimerTest {
     }
 
     @Test
+    public void is_completed_when_no_time_remaining() {
+        final var t1 = Instant.now();
+        final var t2 = t1.plusSeconds(1);
+        final var t3 = t2.plusSeconds(1);
+
+        context.checking(new Expectations() {{
+            oneOf(display).timeRemaining(seconds(1));
+            oneOf(display).timeRemaining(Duration.ZERO);
+        }});
+
+        timer.start(t1, seconds(1));
+        timer.tick(t2);
+        timer.tick(t3);
+    }
+
+    @Test
     public void example_of_pausing_and_resuming() {
         final var t2 = Instant.now();
         final var t3 = t2.plusSeconds(1);
@@ -167,7 +183,11 @@ public class TimerTest {
                 return;
             }
             final var remaining = duration.minus(elapsed);
-            display.timeRemaining(remaining);
+            if (isLessThanOneSecond(remaining)) {
+                complete();
+            } else {
+                display.timeRemaining(remaining);
+            }
         }
 
         private boolean isLessThanOneSecond(Duration d) {
