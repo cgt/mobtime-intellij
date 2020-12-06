@@ -89,6 +89,26 @@ public class TimerTest {
     }
 
     @Test
+    public void stop_updating_display_after_completion() {
+        final var t1 = Instant.now();
+        final var t2 = t1.plusSeconds(1);
+
+        context.checking(new Expectations() {{
+            final var update = context.sequence("update");
+
+            oneOf(display).timeRemaining(seconds(60));
+            inSequence(update);
+
+            oneOf(display).timeRemaining(Duration.ZERO);
+            inSequence(update);
+        }});
+
+        timer.start(t1, seconds(60));
+        timer.complete();
+        timer.tick(t2);
+    }
+
+    @Test
     public void example_of_pausing_and_resuming() {
         final var t2 = Instant.now();
         final var t3 = t2.plusSeconds(1);
@@ -134,6 +154,7 @@ public class TimerTest {
         }
 
         public void complete() {
+            startTime = null;
             display.timeRemaining(Duration.ZERO);
         }
 
