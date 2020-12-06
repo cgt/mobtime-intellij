@@ -18,6 +18,14 @@ final class TimerService implements Display {
     private final Mobtime mobtime = new Mobtime();
 
     void startTimer() {
+        if (mobtime.isConnected()) {
+            ApplicationManager.getApplication().executeOnPooledThread(() -> {
+                myTimer.complete();
+                mobtime.disconnect();
+            });
+            return;
+        }
+
         final var timerName = Messages.showInputDialog("Enter name of your Mobtimer", "Mobtime", null);
         if (timerName == null || timerName.isBlank()) {
             System.err.println("User entered blank timer name.");

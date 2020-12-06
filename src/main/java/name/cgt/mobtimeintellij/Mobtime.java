@@ -13,13 +13,17 @@ import java.util.List;
 import java.util.function.Consumer;
 
 class Mobtime {
-    private final WebSocketClient ws;
-    private final MyTextWebSocketHandler handler;
+    private WebSocketClient ws;
+    private MyTextWebSocketHandler handler;
     final List<String> messages;
     private Consumer<String> messageListener;
 
     Mobtime() {
         messages = new ArrayList<>();
+        initializeWebSocketClient();
+    }
+
+    private void initializeWebSocketClient() {
         final var original = Thread.currentThread().getContextClassLoader();
         try {
             Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
@@ -33,6 +37,23 @@ class Mobtime {
     public void connect(String timerName, Consumer<String> messageListener) {
         this.messageListener = messageListener;
         ws.doHandshake(handler, "wss://mobti.me/" + timerName);
+    }
+
+    public boolean isConnected() {
+        final var session = handler.session;
+        return session != null && session.isOpen();
+    }
+
+    public void disconnect() {
+        final var session = handler.session;
+        if (session != null) {
+            try {
+                session.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            initializeWebSocketClient();
+        }
     }
 
     public void onConnect() {
