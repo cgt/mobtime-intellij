@@ -1,5 +1,6 @@
 package name.cgt.mobtimeintellij;
 
+import com.eclipsesource.json.Json;
 import org.jmock.Expectations;
 import org.jmock.junit5.JUnit5Mockery;
 import org.junit.jupiter.api.Test;
@@ -40,7 +41,9 @@ public class MobtimeEventTranslatorTest {
             if (event == null || event.isBlank()) {
                 return;
             }
-            if ("{\"type\":\"timer:complete\"}".equals(event)) {
+            final var e = Json.parse(event).asObject();
+            final var type = e.getString("type", null);
+            if ("timer:complete".equals(type)) {
                 listener.complete();
             }
         }
