@@ -86,11 +86,15 @@ public class TimerTest {
 
         public void tick(Instant now) {
             final var elapsed = Duration.between(startTime, now);
-            if (elapsed.compareTo(Duration.ofSeconds(1)) < 0) {
+            if (isLessThanOneSecond(elapsed)) {
                 return;
             }
             final var remaining = duration.minus(elapsed);
             display.timeRemaining(remaining);
+        }
+
+        private boolean isLessThanOneSecond(Duration elapsed) {
+            return elapsed.compareTo(Duration.ofSeconds(1)) < 0;
         }
     }
 
