@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import java.time.Duration;
 import java.time.Instant;
 
-class Timer {
+class Timer implements TimerEventListener {
     private final Display display;
     @Nullable
     private Instant startTime;
@@ -21,18 +21,21 @@ class Timer {
         display.timeRemaining(Duration.ZERO);
     }
 
+    @Override
     public void start(Instant now, Duration time) {
         startTime = now;
         duration = time;
         display.timeRemaining(time);
     }
 
+    @Override
     public void pause(Duration time) {
         startTime = null;
         duration = time;
         display.timeRemaining(time);
     }
 
+    @Override
     public void complete() {
         startTime = null;
         display.timeRemaining(Duration.ZERO);
