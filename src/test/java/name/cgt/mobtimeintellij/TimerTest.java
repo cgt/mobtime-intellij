@@ -27,10 +27,10 @@ public class TimerTest {
     @Test
     public void when_started_display_time_remaining() {
         context.checking(new Expectations() {{
-            oneOf(display).timeRemaining(Duration.ofSeconds(60));
+            oneOf(display).timeRemaining(seconds(60));
         }});
 
-        timer.start(Instant.now(), Duration.ofSeconds(60));
+        timer.start(Instant.now(), seconds(60));
     }
 
     @Test
@@ -41,14 +41,14 @@ public class TimerTest {
         context.checking(new Expectations() {{
             final var update = context.sequence("update");
 
-            oneOf(display).timeRemaining(Duration.ofSeconds(60));
+            oneOf(display).timeRemaining(seconds(60));
             inSequence(update);
 
-            oneOf(display).timeRemaining(Duration.ofSeconds(59));
+            oneOf(display).timeRemaining(seconds(59));
             inSequence(update);
         }});
 
-        timer.start(t1, Duration.ofSeconds(60));
+        timer.start(t1, seconds(60));
         timer.tick(t2);
     }
 
@@ -58,11 +58,15 @@ public class TimerTest {
         final var t2 = t1.plusMillis(999);
 
         context.checking(new Expectations() {{
-            oneOf(display).timeRemaining(Duration.ofSeconds(60));
+            oneOf(display).timeRemaining(seconds(60));
         }});
 
-        timer.start(t1, Duration.ofSeconds(60));
+        timer.start(t1, seconds(60));
         timer.tick(t2);
+    }
+
+    private static Duration seconds(int n) {
+        return Duration.ofSeconds(n);
     }
 
     private static class Timer {
@@ -94,7 +98,7 @@ public class TimerTest {
         }
 
         private boolean isLessThanOneSecond(Duration d) {
-            return d.compareTo(Duration.ofSeconds(1)) < 0;
+            return d.compareTo(seconds(1)) < 0;
         }
     }
 
