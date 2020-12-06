@@ -86,7 +86,7 @@ public class TimerTest {
         private final Display display;
         @Nullable
         private Instant startTime;
-        private Duration duration;
+        private Duration duration = Duration.ZERO;
 
         public Timer(Display display) {
             this.display = display;
