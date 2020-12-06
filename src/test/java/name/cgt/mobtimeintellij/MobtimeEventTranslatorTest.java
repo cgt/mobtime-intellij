@@ -20,6 +20,14 @@ public class MobtimeEventTranslatorTest {
         translator.onEvent("");
     }
 
+    @Test
+    public void timer_complete() {
+        context.checking(new Expectations() {{
+            oneOf(listener).complete();
+        }});
+        translator.onEvent("{\"type\":\"timer:complete\"}");
+    }
+
     private static class MobtimeEventTranslator {
         private final TimerEventListener listener;
 
@@ -28,6 +36,9 @@ public class MobtimeEventTranslatorTest {
         }
 
         public void onEvent(String event) {
+            if ("{\"type\":\"timer:complete\"}".equals(event)) {
+                listener.complete();
+            }
         }
     }
 }
