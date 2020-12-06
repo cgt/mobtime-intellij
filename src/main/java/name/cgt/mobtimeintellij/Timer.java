@@ -43,9 +43,6 @@ class Timer {
             return;
         }
         final var elapsed = Duration.between(startTime, now);
-        if (isLessThanOneSecond(elapsed)) {
-            return;
-        }
         final var remaining = duration.minus(elapsed);
         if (isLessThanOneSecond(remaining)) {
             complete();
