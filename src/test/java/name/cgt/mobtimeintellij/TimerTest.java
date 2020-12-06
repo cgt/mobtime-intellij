@@ -23,6 +23,15 @@ public class TimerTest {
         timer.init();
     }
 
+    @Test
+    public void when_started_display_time_remaining() {
+        context.checking(new Expectations() {{
+            oneOf(display).timeRemaining(Duration.ofSeconds(60));
+        }});
+
+        timer.start(Duration.ofSeconds(60));
+    }
+
     private static class Timer {
         private final Display display;
 
@@ -32,6 +41,10 @@ public class TimerTest {
 
         public void init() {
             display.timeRemaining(Duration.ZERO);
+        }
+
+        public void start(Duration time) {
+            display.timeRemaining(time);
         }
     }
 
