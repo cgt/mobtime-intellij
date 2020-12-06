@@ -25,6 +25,7 @@ dependencies {
     implementation('org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17')
     implementation('org.springframework:spring-websocket:5.3.1')
     testImplementation('org.junit.jupiter:junit-jupiter:5.6.3')
+    testImplementation('org.jmock:jmock-junit5:2.12.0')
     testImplementation('org.awaitility:awaitility:4.0.3')
 }
 
