@@ -80,6 +80,15 @@ public class TimerTest {
     }
 
     @Test
+    public void when_completed_display_no_time_remaining() {
+        context.checking(new Expectations() {{
+            oneOf(display).timeRemaining(Duration.ZERO);
+        }});
+
+        timer.complete();
+    }
+
+    @Test
     public void example_of_pausing_and_resuming() {
         final var t2 = Instant.now();
         final var t3 = t2.plusSeconds(1);
@@ -122,6 +131,10 @@ public class TimerTest {
             startTime = null;
             duration = time;
             display.timeRemaining(time);
+        }
+
+        public void complete() {
+            display.timeRemaining(Duration.ZERO);
         }
 
         public void tick(Instant now) {
