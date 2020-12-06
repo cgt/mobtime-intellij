@@ -51,6 +51,14 @@ public class MobtimeEventTranslatorTest {
         translator.onEvent("{\"type\":\"timer:start\",\"timerDuration\":300000}");
     }
 
+    @Test
+    public void timer_pause() {
+        context.checking(new Expectations() {{
+            oneOf(listener).pause(Duration.ofMillis(1234));
+        }});
+        translator.onEvent("{\"type\":\"timer:pause\",\"timerDuration\":1234}");
+    }
+
     private static class MobtimeEventTranslator {
         private final TimerEventListener listener;
 
@@ -75,6 +83,11 @@ public class MobtimeEventTranslatorTest {
                 final var timerDuration = e.getLong("timerDuration", -1);
                 if (timerDuration >= 0) {
                     listener.start(Instant.now(), Duration.ofMillis(timerDuration));
+                }
+            } else if ("timer:pause".equals(type)) {
+                final var timerDuration = e.getLong("timerDuration", -1);
+                if (timerDuration >= 0) {
+                    listener.pause(Duration.ofMillis(timerDuration));
                 }
             }
         }
