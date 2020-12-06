@@ -195,7 +195,4 @@ public class TimerTest {
         }
     }
 
-    private interface Display {
-        void timeRemaining(Duration time);
-    }
 }
