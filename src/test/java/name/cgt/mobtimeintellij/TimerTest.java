@@ -53,20 +53,6 @@ public class TimerTest {
     }
 
     @Test
-    public void update_on_tick_even_if_less_than_a_second_since_timer_started() {
-        final var t1 = Instant.now();
-        final var t2 = t1.plusMillis(999);
-
-        context.checking(new Expectations() {{
-            oneOf(display).timeRemaining(Duration.ofSeconds(60));
-            oneOf(display).timeRemaining(Duration.ofMillis(59001));
-        }});
-
-        timer.start(t1, seconds(60));
-        timer.tick(t2);
-    }
-
-    @Test
     public void stop_updating_display_while_paused() {
         final var t2 = Instant.now().plusSeconds(2);
 
