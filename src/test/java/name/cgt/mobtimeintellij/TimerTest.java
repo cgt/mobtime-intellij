@@ -1,5 +1,6 @@
 package name.cgt.mobtimeintellij;
 
+import org.jetbrains.annotations.Nullable;
 import org.jmock.Expectations;
 import org.jmock.junit5.JUnit5Mockery;
 import org.junit.jupiter.api.Test;
@@ -83,6 +84,7 @@ public class TimerTest {
 
     private static class Timer {
         private final Display display;
+        @Nullable
         private Instant startTime;
         private Duration duration;
 
