@@ -5,13 +5,12 @@ import com.intellij.openapi.components.Service;
 import com.intellij.openapi.ui.Messages;
 
 import java.time.Duration;
-import java.util.Timer;
 import java.util.TimerTask;
 
 @Service
 final class TimerService {
 
-    private final Timer timer = new Timer(true);
+    private final java.util.Timer timer = new java.util.Timer(true);
     private Listener listener;
 
     void startTimer() {
