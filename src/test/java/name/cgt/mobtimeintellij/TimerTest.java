@@ -191,7 +191,7 @@ public class TimerTest {
         }
 
         private boolean isLessThanOneSecond(Duration d) {
-            return d.compareTo(seconds(1)) < 0;
+            return d.compareTo(Duration.ofSeconds(1)) < 0;
         }
     }
 
