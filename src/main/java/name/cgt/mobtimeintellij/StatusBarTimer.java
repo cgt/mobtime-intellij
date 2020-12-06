@@ -71,7 +71,7 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
         };
     }
 
-    private static class LabelUpdater implements TimerService.Listener {
+    private static class LabelUpdater implements TimerService.StatusText {
 
         private final StatusBarTimer statusBarTimer;
         private final StatusBar statusBar;
@@ -82,16 +82,7 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
         }
 
         @Override
-        public void onStarted() {
-            setLabelText("Timer started");
-        }
-
-        @Override
-        public void onExpired() {
-            setLabelText("Timer ready");
-        }
-
-        private void setLabelText(String text) {
+        public void setLabelText(String text) {
             statusBarTimer.text = text;
             statusBar.updateWidget(statusBarTimer.ID());
         }
