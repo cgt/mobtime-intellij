@@ -21,10 +21,13 @@ class Mobtime {
     Mobtime() {
         messages = new ArrayList<>();
         final var original = Thread.currentThread().getContextClassLoader();
-        Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
-        ws = new StandardWebSocketClient();
-        handler = new MyTextWebSocketHandler(this);
-        Thread.currentThread().setContextClassLoader(original);
+        try {
+            Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+            ws = new StandardWebSocketClient();
+            handler = new MyTextWebSocketHandler(this);
+        } finally {
+            Thread.currentThread().setContextClassLoader(original);
+        }
     }
 
     public void connect(String timerName, Consumer<String> messageListener) {
