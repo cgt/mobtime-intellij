@@ -13,9 +13,13 @@ final class TimerService implements Display {
     private final java.util.Timer timer = new java.util.Timer(true);
     private StatusText statusText;
     private final Timer myTimer = new Timer(this);
+    private final MobtimeEventTranslator eventTranslator = new MobtimeEventTranslator(myTimer);
+    private final Mobtime mobtime = new Mobtime();
 
     void startTimer() {
-        myTimer.start(Instant.now(), Duration.ofSeconds(10));
+        ApplicationManager.getApplication().executeOnPooledThread(() ->
+          mobtime.connect("foo", eventTranslator::onEvent)
+        );
     }
 
     void addListener(StatusText statusText) {
