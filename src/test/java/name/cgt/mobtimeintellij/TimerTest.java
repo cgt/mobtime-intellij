@@ -79,6 +79,20 @@ public class TimerTest {
         timer.tick(t2);
     }
 
+    @Test
+    public void example_of_pausing_and_resuming() {
+        final var t2 = Instant.now();
+        final var t3 = t2.plusSeconds(1);
+
+        context.checking(new Expectations() {{
+            exactly(2).of(display).timeRemaining(seconds(10));
+        }});
+
+        timer.pause(seconds(10));
+        timer.tick(t2);
+        timer.start(t3, seconds(10));
+    }
+
     private static Duration seconds(int n) {
         return Duration.ofSeconds(n);
     }
