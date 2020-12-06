@@ -52,6 +52,19 @@ public class TimerTest {
         timer.tick(t2);
     }
 
+    @Test
+    public void only_update_on_tick_if_at_least_one_second_elapsed_since_last_tick() {
+        final var t1 = Instant.now();
+        final var t2 = t1.plusMillis(999);
+
+        context.checking(new Expectations() {{
+            oneOf(display).timeRemaining(Duration.ofSeconds(60));
+        }});
+
+        timer.start(t1, Duration.ofSeconds(60));
+        timer.tick(t2);
+    }
+
     private static class Timer {
         private final Display display;
         private Instant startTime;
@@ -73,6 +86,9 @@ public class TimerTest {
 
         public void tick(Instant now) {
             final var elapsed = Duration.between(startTime, now);
+            if (elapsed.compareTo(Duration.ofSeconds(1)) < 0) {
+                return;
+            }
             final var remaining = duration.minus(elapsed);
             display.timeRemaining(remaining);
         }
