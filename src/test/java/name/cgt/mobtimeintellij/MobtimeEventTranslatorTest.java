@@ -17,6 +17,7 @@ public class MobtimeEventTranslatorTest {
         context.checking(new Expectations() {{
             never(listener);
         }});
+        translator.onEvent(null);
         translator.onEvent("");
     }
 
@@ -36,6 +37,9 @@ public class MobtimeEventTranslatorTest {
         }
 
         public void onEvent(String event) {
+            if (event == null || event.isBlank()) {
+                return;
+            }
             if ("{\"type\":\"timer:complete\"}".equals(event)) {
                 listener.complete();
             }
