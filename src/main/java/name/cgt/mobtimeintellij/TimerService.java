@@ -2,6 +2,7 @@ package name.cgt.mobtimeintellij;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.Service;
+import com.intellij.openapi.ui.Messages;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -17,8 +18,14 @@ final class TimerService implements Display {
     private final Mobtime mobtime = new Mobtime();
 
     void startTimer() {
+        final var timerName = Messages.showInputDialog("Enter name of your Mobtimer", "Mobtime", null);
+        if (timerName == null || timerName.isBlank()) {
+            System.err.println("User entered blank timer name.");
+            return;
+        }
+        System.out.println("Connecting to timer " + timerName);
         ApplicationManager.getApplication().executeOnPooledThread(() ->
-          mobtime.connect("foo", eventTranslator::onEvent)
+          mobtime.connect(timerName, eventTranslator::onEvent)
         );
     }
 
