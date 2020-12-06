@@ -65,6 +65,18 @@ public class TimerTest {
         timer.tick(t2);
     }
 
+    @Test
+    public void stop_updating_display_while_paused() {
+        final var t2 = Instant.now().plusSeconds(2);
+
+        context.checking(new Expectations() {{
+            oneOf(display).timeRemaining(seconds(41));
+        }});
+
+        timer.pause(seconds(41));
+        timer.tick(t2);
+    }
+
     private static Duration seconds(int n) {
         return Duration.ofSeconds(n);
     }
@@ -88,7 +100,16 @@ public class TimerTest {
             display.timeRemaining(time);
         }
 
+        public void pause(Duration time) {
+            startTime = null;
+            duration = time;
+            display.timeRemaining(time);
+        }
+
         public void tick(Instant now) {
+            if (startTime == null) {
+                return;
+            }
             final var elapsed = Duration.between(startTime, now);
             if (isLessThanOneSecond(elapsed)) {
                 return;
