@@ -1,6 +1,8 @@
 package name.cgt.mobtimeintellij;
 
 import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.ParseException;
 import org.jmock.Expectations;
 import org.jmock.junit5.JUnit5Mockery;
 import org.junit.jupiter.api.Test;
@@ -23,6 +25,14 @@ public class MobtimeEventTranslatorTest {
         }});
         translator.onEvent(null);
         translator.onEvent("");
+    }
+
+    @Test
+    public void discard_event_with_invalid_JSON() {
+        context.checking(new Expectations() {{
+            never(listener);
+        }});
+        translator.onEvent("<this is definitely not json>");
     }
 
     @Test
@@ -52,7 +62,12 @@ public class MobtimeEventTranslatorTest {
             if (event == null || event.isBlank()) {
                 return;
             }
-            final var e = Json.parse(event).asObject();
+            final JsonObject e;
+            try {
+                e = Json.parse(event).asObject();
+            } catch (ParseException ex) {
+                return;
+            }
             final var type = e.getString("type", null);
             if ("timer:complete".equals(type)) {
                 listener.complete();
