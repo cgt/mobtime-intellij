@@ -18,7 +18,7 @@ public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.Te
     public static final String id = "StatusBarTimer";
 
     @NotNull
-    private String text = "Timer ready";
+    private String text = "";
 
     protected StatusLabel(@NotNull Project project) {
         super(project);
