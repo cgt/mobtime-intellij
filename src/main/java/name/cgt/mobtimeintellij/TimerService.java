@@ -66,8 +66,8 @@ final class TimerService implements MobtimerListener {
             return;
         }
         final var app = ApplicationManager.getApplication();
-        app.invokeLater(() -> {
-            statusText.display(String.format("%d seconds", time.toSeconds()));
-        });
+        app.invokeLater(() ->
+          statusText.display(String.format("%d seconds", time.toSeconds()))
+        );
     }
 }
