@@ -9,7 +9,7 @@ import java.time.Instant;
 import java.util.TimerTask;
 
 @Service
-final class TimerService implements Display {
+final class TimerService implements MobtimerListener {
 
     private final java.util.Timer javaTimer = new java.util.Timer(true);
     private StatusTextDisplay statusText;

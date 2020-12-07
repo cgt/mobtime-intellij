@@ -12,7 +12,7 @@ public class TimerTest {
     @RegisterExtension
     final JUnit5Mockery context = new JUnit5Mockery();
 
-    private final Display display = context.mock(Display.class);
+    private final MobtimerListener display = context.mock(MobtimerListener.class);
     private final Mobtimer timer = new Mobtimer(display);
 
     @Test

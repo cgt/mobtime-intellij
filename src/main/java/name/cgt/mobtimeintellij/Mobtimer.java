@@ -7,13 +7,13 @@ import java.time.Duration;
 import java.time.Instant;
 
 class Mobtimer implements TimerEventListener {
-    private final Display display;
+    private final MobtimerListener display;
     @Nullable
     private Instant startTime;
     @NotNull
     private Duration duration = Duration.ZERO;
 
-    public Mobtimer(Display display) {
+    public Mobtimer(MobtimerListener display) {
         this.display = display;
     }
 
