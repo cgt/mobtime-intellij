@@ -81,8 +81,7 @@ public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.Te
 
         @Override
         public void set(String text) {
-            final var x = this.statusBarTimer;
-            applesauce(text, x);
+            applesauce(text, this.statusBarTimer);
         }
 
         private void applesauce(String text, StatusLabel x) {
