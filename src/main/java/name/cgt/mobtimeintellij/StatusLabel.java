@@ -52,6 +52,12 @@ public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.Te
     }
 
     @Override
+    public void set(String s) {
+        this.text = s;
+        this.myStatusBar.updateWidget(ID());
+    }
+
+    @Override
     public float getAlignment() {
         return 0;
     }
@@ -69,11 +75,5 @@ public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.Te
         return mouseEvent -> {
             ServiceManager.getService(TimerService.class).startTimer();
         };
-    }
-
-    @Override
-    public void set(String s) {
-        this.text = s;
-        this.myStatusBar.updateWidget(ID());
     }
 }
