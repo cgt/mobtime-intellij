@@ -74,17 +74,15 @@ public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.Te
     private static class LabelUpdater implements TimerService.StatusText {
 
         private final StatusLabel statusBarTimer;
-        private final StatusBar statusBar;
 
         public LabelUpdater(StatusLabel statusBarTimer) {
-            this.statusBar = statusBarTimer.myStatusBar;
             this.statusBarTimer = statusBarTimer;
         }
 
         @Override
         public void set(String text) {
             statusBarTimer.text = text;
-            statusBar.updateWidget(statusBarTimer.ID());
+            statusBarTimer.myStatusBar.updateWidget(statusBarTimer.ID());
         }
     }
 }
