@@ -6,12 +6,13 @@ import com.intellij.openapi.ui.Messages;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Timer;
 import java.util.TimerTask;
 
 @Service
 final class TimerService implements MobtimerListener {
 
-    private final java.util.Timer javaTimer = new java.util.Timer(true);
+    private final Timer javaTimer = new Timer(true);
     private StatusTextDisplay statusText;
     private final Mobtimer mobtimer = new Mobtimer(this);
     private final MobtimeEventTranslator eventTranslator = new MobtimeEventTranslator(mobtimer);
