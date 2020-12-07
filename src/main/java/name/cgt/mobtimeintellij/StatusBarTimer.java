@@ -82,7 +82,7 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
         }
 
         @Override
-        public void setLabelText(String text) {
+        public void set(String text) {
             statusBarTimer.text = text;
             statusBar.updateWidget(statusBarTimer.ID());
         }

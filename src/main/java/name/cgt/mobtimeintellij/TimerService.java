@@ -51,7 +51,7 @@ final class TimerService implements Display {
     }
 
     interface StatusText {
-        void setLabelText(String s);
+        void set(String s);
     }
 
     @Override
@@ -61,7 +61,7 @@ final class TimerService implements Display {
         }
         final var app = ApplicationManager.getApplication();
         app.invokeLater(() -> {
-            statusText.setLabelText(String.format("%d seconds", time.toSeconds()));
+            statusText.set(String.format("%d seconds", time.toSeconds()));
         });
     }
 }
