@@ -15,13 +15,13 @@ final class TimerService implements Display {
     private StatusTextDisplay statusText;
     private final Mobtimer myTimer = new Mobtimer(this);
     private final MobtimeEventTranslator eventTranslator = new MobtimeEventTranslator(myTimer);
-    private final MobtimeClient mobtime = new MobtimeClient();
+    private final MobtimeClient mobtimeClient = new MobtimeClient();
 
     void startTimer() {
-        if (mobtime.isConnected()) {
+        if (mobtimeClient.isConnected()) {
             ApplicationManager.getApplication().executeOnPooledThread(() -> {
                 myTimer.complete();
-                mobtime.disconnect();
+                mobtimeClient.disconnect();
             });
             return;
         }
@@ -33,7 +33,7 @@ final class TimerService implements Display {
         }
         System.out.println("Connecting to timer " + timerName);
         ApplicationManager.getApplication().executeOnPooledThread(() ->
-          mobtime.connect(timerName, eventTranslator::onEvent)
+          mobtimeClient.connect(timerName, eventTranslator::onEvent)
         );
     }
 
