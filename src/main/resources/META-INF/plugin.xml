@@ -10,7 +10,7 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <statusBarWidgetFactory implementation="name.cgt.mobtimeintellij.StatusBarTimerFactory"/>
+        <statusBarWidgetFactory implementation="name.cgt.mobtimeintellij.StatusLabelFactory"/>
     </extensions>
 
     <actions>
