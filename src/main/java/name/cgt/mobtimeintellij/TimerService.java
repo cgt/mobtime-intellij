@@ -51,7 +51,7 @@ final class TimerService implements Display {
     }
 
     interface StatusTextDisplay {
-        void display(String s);
+        void display(String text);
     }
 
     @Override

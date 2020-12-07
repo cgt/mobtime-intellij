@@ -52,8 +52,8 @@ public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.Te
     }
 
     @Override
-    public void display(String s) {
-        this.text = s;
+    public void display(String text) {
+        this.text = text;
         this.myStatusBar.updateWidget(ID());
     }
 
