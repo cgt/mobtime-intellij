@@ -7,38 +7,38 @@ import java.time.Duration;
 import java.time.Instant;
 
 class Mobtimer implements TimerEventListener {
-    private final MobtimerListener display;
+    private final MobtimerListener listener;
     @Nullable
     private Instant startTime;
     @NotNull
     private Duration duration = Duration.ZERO;
 
-    public Mobtimer(MobtimerListener display) {
-        this.display = display;
+    public Mobtimer(MobtimerListener listener) {
+        this.listener = listener;
     }
 
     public void init() {
-        display.timeRemaining(Duration.ZERO);
+        listener.timeRemaining(Duration.ZERO);
     }
 
     @Override
     public void start(Instant now, Duration time) {
         startTime = now;
         duration = time;
-        display.timeRemaining(time);
+        listener.timeRemaining(time);
     }
 
     @Override
     public void pause(Duration time) {
         startTime = null;
         duration = time;
-        display.timeRemaining(time);
+        listener.timeRemaining(time);
     }
 
     @Override
     public void complete() {
         startTime = null;
-        display.timeRemaining(Duration.ZERO);
+        listener.timeRemaining(Duration.ZERO);
     }
 
     public void tick(Instant now) {
@@ -50,7 +50,7 @@ class Mobtimer implements TimerEventListener {
         if (isLessThanOneSecond(remaining)) {
             complete();
         } else {
-            display.timeRemaining(remaining);
+            listener.timeRemaining(remaining);
         }
     }
 
