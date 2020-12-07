@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-class Mobtime {
+class MobtimeClient {
     private WebSocketClient ws;
     private MyTextWebSocketHandler handler;
     final List<String> messages;
     private Consumer<String> messageListener;
 
-    Mobtime() {
+    MobtimeClient() {
         messages = new ArrayList<>();
         initializeWebSocketClient();
     }
@@ -78,9 +78,9 @@ class Mobtime {
 
         String firstMessage;
 
-        private final Mobtime mobtime;
+        private final MobtimeClient mobtime;
 
-        public MyTextWebSocketHandler(Mobtime mobtime) {
+        public MyTextWebSocketHandler(MobtimeClient mobtime) {
             this.mobtime = mobtime;
         }
 

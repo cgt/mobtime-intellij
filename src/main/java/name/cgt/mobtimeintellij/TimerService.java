@@ -15,7 +15,7 @@ final class TimerService implements Display {
     private StatusTextDisplay statusText;
     private final Timer myTimer = new Timer(this);
     private final MobtimeEventTranslator eventTranslator = new MobtimeEventTranslator(myTimer);
-    private final Mobtime mobtime = new Mobtime();
+    private final MobtimeClient mobtime = new MobtimeClient();
 
     void startTimer() {
         if (mobtime.isConnected()) {
