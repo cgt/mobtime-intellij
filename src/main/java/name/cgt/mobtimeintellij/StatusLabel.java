@@ -13,14 +13,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.awt.event.MouseEvent;
 
-public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget.TextPresentation {
+public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.TextPresentation {
     @NotNull
     public static final String id = "StatusBarTimer";
 
     @NotNull
     private String text = "Timer ready";
 
-    protected StatusBarTimer(@NotNull Project project) {
+    protected StatusLabel(@NotNull Project project) {
         super(project);
     }
 
@@ -73,10 +73,10 @@ public class StatusBarTimer extends EditorBasedWidget implements StatusBarWidget
 
     private static class LabelUpdater implements TimerService.StatusText {
 
-        private final StatusBarTimer statusBarTimer;
+        private final StatusLabel statusBarTimer;
         private final StatusBar statusBar;
 
-        public LabelUpdater(StatusBarTimer statusBarTimer) {
+        public LabelUpdater(StatusLabel statusBarTimer) {
             this.statusBar = statusBarTimer.myStatusBar;
             this.statusBarTimer = statusBarTimer;
         }

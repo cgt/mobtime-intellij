@@ -14,7 +14,7 @@ public class StatusBarTimerFactory implements StatusBarWidgetFactory {
     @NonNls
     @NotNull
     public String getId() {
-        return StatusBarTimer.id;
+        return StatusLabel.id;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class StatusBarTimerFactory implements StatusBarWidgetFactory {
     @Override
     @NotNull
     public StatusBarWidget createWidget(@NotNull Project project) {
-        return new StatusBarTimer(project);
+        return new StatusLabel(project);
     }
 
     @Override
