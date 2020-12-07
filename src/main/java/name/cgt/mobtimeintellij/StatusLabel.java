@@ -81,8 +81,9 @@ public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.Te
 
         @Override
         public void set(String text) {
-            statusBarTimer.text = text;
-            statusBarTimer.myStatusBar.updateWidget(statusBarTimer.ID());
+            final var x = this.statusBarTimer;
+            x.text = text;
+            x.myStatusBar.updateWidget(x.ID());
         }
     }
 }
