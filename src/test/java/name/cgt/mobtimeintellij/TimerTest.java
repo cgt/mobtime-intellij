@@ -12,13 +12,13 @@ public class TimerTest {
     @RegisterExtension
     final JUnit5Mockery context = new JUnit5Mockery();
 
-    private final MobtimerListener display = context.mock(MobtimerListener.class);
-    private final Mobtimer timer = new Mobtimer(display);
+    private final MobtimerListener listener = context.mock(MobtimerListener.class);
+    private final Mobtimer timer = new Mobtimer(listener);
 
     @Test
     public void when_initialized_display_no_time_remaining() {
         context.checking(new Expectations() {{
-            oneOf(display).timeRemaining(Duration.ZERO);
+            oneOf(listener).timeRemaining(Duration.ZERO);
         }});
 
         timer.init();
@@ -27,7 +27,7 @@ public class TimerTest {
     @Test
     public void when_started_display_time_remaining() {
         context.checking(new Expectations() {{
-            oneOf(display).timeRemaining(seconds(60));
+            oneOf(listener).timeRemaining(seconds(60));
         }});
 
         timer.start(Instant.now(), seconds(60));
@@ -41,10 +41,10 @@ public class TimerTest {
         context.checking(new Expectations() {{
             final var update = context.sequence("update");
 
-            oneOf(display).timeRemaining(seconds(60));
+            oneOf(listener).timeRemaining(seconds(60));
             inSequence(update);
 
-            oneOf(display).timeRemaining(seconds(59));
+            oneOf(listener).timeRemaining(seconds(59));
             inSequence(update);
         }});
 
@@ -57,7 +57,7 @@ public class TimerTest {
         final var t2 = Instant.now().plusSeconds(2);
 
         context.checking(new Expectations() {{
-            oneOf(display).timeRemaining(seconds(41));
+            oneOf(listener).timeRemaining(seconds(41));
         }});
 
         timer.pause(seconds(41));
@@ -67,7 +67,7 @@ public class TimerTest {
     @Test
     public void when_completed_display_no_time_remaining() {
         context.checking(new Expectations() {{
-            oneOf(display).timeRemaining(Duration.ZERO);
+            oneOf(listener).timeRemaining(Duration.ZERO);
         }});
 
         timer.complete();
@@ -81,10 +81,10 @@ public class TimerTest {
         context.checking(new Expectations() {{
             final var update = context.sequence("update");
 
-            oneOf(display).timeRemaining(seconds(60));
+            oneOf(listener).timeRemaining(seconds(60));
             inSequence(update);
 
-            oneOf(display).timeRemaining(Duration.ZERO);
+            oneOf(listener).timeRemaining(Duration.ZERO);
             inSequence(update);
         }});
 
@@ -100,8 +100,8 @@ public class TimerTest {
         final var t3 = t2.plusSeconds(1);
 
         context.checking(new Expectations() {{
-            oneOf(display).timeRemaining(seconds(1));
-            oneOf(display).timeRemaining(Duration.ZERO);
+            oneOf(listener).timeRemaining(seconds(1));
+            oneOf(listener).timeRemaining(Duration.ZERO);
         }});
 
         timer.start(t1, seconds(1));
@@ -115,7 +115,7 @@ public class TimerTest {
         final var t3 = t2.plusSeconds(1);
 
         context.checking(new Expectations() {{
-            exactly(2).of(display).timeRemaining(seconds(10));
+            exactly(2).of(listener).timeRemaining(seconds(10));
         }});
 
         timer.pause(seconds(10));
