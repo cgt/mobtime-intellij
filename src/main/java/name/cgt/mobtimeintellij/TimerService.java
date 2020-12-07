@@ -13,14 +13,14 @@ final class TimerService implements Display {
 
     private final java.util.Timer javaTimer = new java.util.Timer(true);
     private StatusTextDisplay statusText;
-    private final Mobtimer myTimer = new Mobtimer(this);
-    private final MobtimeEventTranslator eventTranslator = new MobtimeEventTranslator(myTimer);
+    private final Mobtimer mobtimer = new Mobtimer(this);
+    private final MobtimeEventTranslator eventTranslator = new MobtimeEventTranslator(mobtimer);
     private final MobtimeClient mobtimeClient = new MobtimeClient();
 
     void startTimer() {
         if (mobtimeClient.isConnected()) {
             ApplicationManager.getApplication().executeOnPooledThread(() -> {
-                myTimer.complete();
+                mobtimer.complete();
                 mobtimeClient.disconnect();
             });
             return;
@@ -39,12 +39,12 @@ final class TimerService implements Display {
 
     void addStatusTextDisplay(StatusTextDisplay statusText) {
         this.statusText = statusText;
-        myTimer.init();
+        mobtimer.init();
 
         final var tickleMyTimer = new TimerTask() {
             @Override
             public void run() {
-                myTimer.tick(Instant.now());
+                mobtimer.tick(Instant.now());
             }
         };
         final var initialDelay = 0;
