@@ -71,6 +71,11 @@ public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.Te
         };
     }
 
+    private void applesauce(String text) {
+        this.text = text;
+        this.myStatusBar.updateWidget(ID());
+    }
+
     private static class LabelUpdater implements TimerService.StatusText {
 
         private final StatusLabel statusBarTimer;
@@ -81,12 +86,8 @@ public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.Te
 
         @Override
         public void set(String text) {
-            applesauce(text, this.statusBarTimer);
+            this.statusBarTimer.applesauce(text);
         }
 
-        private void applesauce(String text, StatusLabel x) {
-            x.text = text;
-            x.myStatusBar.updateWidget(x.ID());
-        }
     }
 }
