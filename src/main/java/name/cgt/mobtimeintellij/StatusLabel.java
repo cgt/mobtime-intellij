@@ -72,8 +72,6 @@ public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.Te
     @Override
     @Nullable
     public Consumer<MouseEvent> getClickConsumer() {
-        return mouseEvent -> {
-            ServiceManager.getService(TimerService.class).startTimer();
-        };
+        return mouseEvent -> ServiceManager.getService(TimerService.class).startTimer();
     }
 }
