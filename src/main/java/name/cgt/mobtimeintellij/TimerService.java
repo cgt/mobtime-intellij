@@ -48,7 +48,8 @@ final class TimerService implements Display {
             }
         };
         final var initialDelay = 0;
-        timer.scheduleAtFixedRate(tickleMyTimer, initialDelay, 250);
+        final var arbitrarySubsecondIntervalInMilliseconds = 250;
+        timer.scheduleAtFixedRate(tickleMyTimer, initialDelay, arbitrarySubsecondIntervalInMilliseconds);
     }
 
     interface StatusTextDisplay {
