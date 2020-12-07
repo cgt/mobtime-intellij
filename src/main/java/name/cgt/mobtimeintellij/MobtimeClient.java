@@ -34,9 +34,9 @@ class MobtimeClient {
         }
     }
 
-    public void connect(String timerName, Consumer<String> messageListener) {
+    public void connect(String timerURL, Consumer<String> messageListener) {
         this.messageListener = messageListener;
-        ws.doHandshake(handler, "wss://mobti.me/" + timerName);
+        ws.doHandshake(handler, timerURL);
     }
 
     public boolean isConnected() {

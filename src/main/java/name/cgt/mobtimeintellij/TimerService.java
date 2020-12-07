@@ -34,7 +34,7 @@ final class TimerService implements MobtimerListener {
         }
         System.out.println("Connecting to timer " + timerName);
         ApplicationManager.getApplication().executeOnPooledThread(() ->
-          mobtimeClient.connect(timerName, eventTranslator::onEvent)
+          mobtimeClient.connect("wss://mobti.me/" + timerName, eventTranslator::onEvent)
         );
     }
 
