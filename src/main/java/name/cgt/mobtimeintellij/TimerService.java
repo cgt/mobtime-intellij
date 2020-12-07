@@ -47,7 +47,8 @@ final class TimerService implements Display {
                 myTimer.tick(Instant.now());
             }
         };
-        timer.scheduleAtFixedRate(tickleMyTimer, 0, 250);
+        final var initialDelay = 0;
+        timer.scheduleAtFixedRate(tickleMyTimer, initialDelay, 250);
     }
 
     interface StatusTextDisplay {
