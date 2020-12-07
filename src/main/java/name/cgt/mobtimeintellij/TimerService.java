@@ -40,7 +40,10 @@ final class TimerService implements MobtimerListener {
     void addStatusTextDisplay(StatusTextDisplay statusText) {
         this.statusText = statusText;
         mobtimer.init();
+        scheduleTimerTicks();
+    }
 
+    private void scheduleTimerTicks() {
         final var tickleMyTimer = new TimerTask() {
             @Override
             public void run() {
