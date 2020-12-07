@@ -13,7 +13,7 @@ final class TimerService implements Display {
 
     private final java.util.Timer javaTimer = new java.util.Timer(true);
     private StatusTextDisplay statusText;
-    private final Timer myTimer = new Timer(this);
+    private final Mobtimer myTimer = new Mobtimer(this);
     private final MobtimeEventTranslator eventTranslator = new MobtimeEventTranslator(myTimer);
     private final MobtimeClient mobtime = new MobtimeClient();
 

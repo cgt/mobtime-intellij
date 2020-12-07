@@ -6,14 +6,14 @@ import org.jetbrains.annotations.Nullable;
 import java.time.Duration;
 import java.time.Instant;
 
-class Timer implements TimerEventListener {
+class Mobtimer implements TimerEventListener {
     private final Display display;
     @Nullable
     private Instant startTime;
     @NotNull
     private Duration duration = Duration.ZERO;
 
-    public Timer(Display display) {
+    public Mobtimer(Display display) {
         this.display = display;
     }
 

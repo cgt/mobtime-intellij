@@ -13,7 +13,7 @@ public class TimerTest {
     final JUnit5Mockery context = new JUnit5Mockery();
 
     private final Display display = context.mock(Display.class);
-    private final Timer timer = new Timer(display);
+    private final Mobtimer timer = new Mobtimer(display);
 
     @Test
     public void when_initialized_display_no_time_remaining() {
