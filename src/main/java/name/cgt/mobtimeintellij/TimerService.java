@@ -37,7 +37,7 @@ final class TimerService implements Display {
         );
     }
 
-    void addListener(StatusText statusText) {
+    void addStatusTextDisplay(StatusText statusText) {
         this.statusText = statusText;
         myTimer.init();
 
