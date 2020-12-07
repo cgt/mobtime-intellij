@@ -12,7 +12,7 @@ import java.util.TimerTask;
 final class TimerService implements Display {
 
     private final java.util.Timer timer = new java.util.Timer(true);
-    private StatusText statusText;
+    private StatusTextDisplay statusText;
     private final Timer myTimer = new Timer(this);
     private final MobtimeEventTranslator eventTranslator = new MobtimeEventTranslator(myTimer);
     private final Mobtime mobtime = new Mobtime();
@@ -37,7 +37,7 @@ final class TimerService implements Display {
         );
     }
 
-    void addStatusTextDisplay(StatusText statusText) {
+    void addStatusTextDisplay(StatusTextDisplay statusText) {
         this.statusText = statusText;
         myTimer.init();
 
@@ -50,7 +50,7 @@ final class TimerService implements Display {
         timer.scheduleAtFixedRate(tickleMyTimer, 0, 250);
     }
 
-    interface StatusText {
+    interface StatusTextDisplay {
         void set(String s);
     }
 

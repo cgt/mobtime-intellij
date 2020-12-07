@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.awt.event.MouseEvent;
 
-public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.TextPresentation, TimerService.StatusText {
+public class StatusLabel extends EditorBasedWidget implements StatusBarWidget.TextPresentation, TimerService.StatusTextDisplay {
     @NotNull
     public static final String id = "StatusBarTimer";
 
