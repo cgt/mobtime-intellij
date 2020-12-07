@@ -11,7 +11,7 @@ import java.util.TimerTask;
 @Service
 final class TimerService implements Display {
 
-    private final java.util.Timer timer = new java.util.Timer(true);
+    private final java.util.Timer javaTimer = new java.util.Timer(true);
     private StatusTextDisplay statusText;
     private final Timer myTimer = new Timer(this);
     private final MobtimeEventTranslator eventTranslator = new MobtimeEventTranslator(myTimer);
@@ -49,7 +49,7 @@ final class TimerService implements Display {
         };
         final var initialDelay = 0;
         final var arbitrarySubsecondIntervalInMilliseconds = 250;
-        timer.scheduleAtFixedRate(tickleMyTimer, initialDelay, arbitrarySubsecondIntervalInMilliseconds);
+        javaTimer.scheduleAtFixedRate(tickleMyTimer, initialDelay, arbitrarySubsecondIntervalInMilliseconds);
     }
 
     interface StatusTextDisplay {
