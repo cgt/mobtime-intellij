@@ -73,6 +73,8 @@ final class TimerService implements MobtimerListener {
 
     private String formatTime(Duration time) {
         final var totalSeconds = time.toSeconds();
-        return String.format("%d seconds", totalSeconds);
+        final var minutes = totalSeconds / 60;
+        final var seconds = totalSeconds % 60;
+        return String.format("%02d:%02d", minutes, seconds);
     }
 }
